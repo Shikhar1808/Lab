@@ -351,4 +351,44 @@ void turnLeft() {
 }
 
 ```
+### Buggy square path
+```
+const int rightMotorForward = 5;
+const int rightMotorBackward = 6;
+const int leftMotorForward = 8;
+const int leftMotorBackward = 7;
+
+void setup() {
+  pinMode(rightMotorForward, OUTPUT);
+  pinMode(rightMotorBackward, OUTPUT);
+  pinMode(leftMotorForward, OUTPUT);
+  pinMode(leftMotorBackward, OUTPUT);
+}
+
+// Function to move forward
+void moveForward(int time) {
+  digitalWrite(rightMotorForward, HIGH);
+  digitalWrite(leftMotorForward, HIGH);
+  digitalWrite(rightMotorBackward, LOW);
+  digitalWrite(leftMotorBackward, LOW);
+  delay(time);
+}
+
+// Function to turn right
+void turnRight(int time) {
+  digitalWrite(rightMotorForward, LOW);
+  digitalWrite(leftMotorForward, HIGH);
+  digitalWrite(rightMotorBackward, HIGH);
+  digitalWrite(leftMotorBackward, LOW);
+  delay(time);
+}
+
+void loop() {
+  for (int i = 0; i < 4; i++) {  // Repeat 4 times to complete a square
+    moveForward(1000);  // Move forward for 10 units
+    turnRight(500);     // Turn right 90 degrees
+  }
+}
+
+```
 
